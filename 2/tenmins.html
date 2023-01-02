@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js"></script>
+    <script>
+
+        let points = [];
+
+        function setup() {
+            createCanvas(800,520);
+            background(0);
+
+            for(let i = 0; i < 12; i++) {
+                points[i] = { x: i * 80, y: 270 };
+            }
+        }
+
+        function draw() {
+
+            background(0,0,0, 20);
+
+            stroke(255);
+            let prev,cur;
+            for(let i = 1; i < points.length; i++) {
+                prev = points[i-1];
+                cur = points[i];
+                line( prev.x, prev.y, cur.x, cur.y);
+                cur.y += Math.sin(frameCount / (i * 10));
+            }
+
+            for( i = 1; i < points.length; i++) {
+                prev = points[i-1];
+                cur = points[i];
+                line( prev.x, 500-prev.y, cur.x, 500-cur.y);
+            }
+        }
+    </script>
+</body>
+</html>
